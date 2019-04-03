@@ -1,0 +1,21 @@
+import time
+import serial
+
+class serial_rpi:
+    serial_gps = serial.Serial('/dev/ttyS0')
+    serial_gps.baudrate = 9600
+    current_data = None
+
+    #Capturing serial data
+    def capture_serial():
+        end_time = 10   #run for 10 seconds
+        stop_time = 0        #stop time variable
+        start = time.time()
+        while stop_time < end_time:
+            stop = time.time()
+            stop_time = stop - start
+        current_data = serial_gps.inWaiting()
+
+    #Reading the captured serial data
+    def read_serial():
+        print(serial_gps.read(current_data))
