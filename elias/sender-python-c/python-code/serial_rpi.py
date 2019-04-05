@@ -3,7 +3,6 @@
 
 import time
 import serial
-from serial_rpi import *
 
 class serial_rpi:
 
@@ -74,4 +73,6 @@ class serial_rpi:
             latitude = cleanedBuffer[3]
             longtitude = cleanedBuffer[5]
         coordinates = [latitude,longtitude]
-        return coordinates
+        print(latitude)
+        print(longtitude)
+        #return coordinates
