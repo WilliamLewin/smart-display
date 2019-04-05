@@ -1,8 +1,19 @@
+# 2019-04-04
+# Version: 0.1.1
+
 import time
 import serial
 from serial_rpi import *
 
 class serial_rpi:
+    ###################################
+    # This function captures GPS data
+    # using serial port /dev/ttyS0
+    # which the LoRa/GPS hat has gps
+    # module connected on.
+    #
+    # Return: GPS data
+    ###################################
 
     def capture_gps_data(self):
         gpsBuffer = []
@@ -17,6 +28,14 @@ class serial_rpi:
         serial_read = serial_gps.inWaiting()
         gpsBuffer = serial_gps.read(serial_read)
         return gpsBuffer
+
+    ###################################
+    # This function filters out
+    # gps data that is being transmit-
+    # ted.
+    #
+    # Return: Filtered GPS data
+    ###################################
 
     def filter_gps_data(self):
         dataBuffer = []
@@ -36,6 +55,12 @@ class serial_rpi:
             i = i + 1
         return dataBuffer
 
+    ###################################
+    # This function gives latitude
+    # and longtitude
+    #
+    # Return: Latitude and longtitude
+    ###################################
     def filter_coordinates(self):
         longtitude = 0
         latitude = 0
@@ -47,3 +72,5 @@ class serial_rpi:
             longtitude = cleanedBuffer[5:6]
         coordinates = [latitude,longtitude]
         return coordinates
+
+    def encrypt_coordinates(self):
