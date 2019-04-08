@@ -8,7 +8,8 @@
 
 /*
 * Modified by Elias Chahine & William Lewin
-* 2019-04-05
+* 2019-04-08
+* Version: 0.2.1
 * Note: Original by Dragino. From example on ->
 * https://wiki.dragino.com/index.php?title=Lora/GPS_HAT
 *
@@ -180,10 +181,28 @@ sf_t sf = SF7;
 // Set center frequency
 uint32_t  freq = 868100000; // in Mhz! (868.1)
 
-uint32_t latitude = 0;
-uint32_t longtitude = 0;
 
-byte hello[32] = 0;
+
+byte coordinatesBuffer[32] = "coordinatesBuffer";
+
+//READ COORDINATES FROM FILE AND STORE IN coordinatesBuffer
+void readFromFile(){
+  int i = 0;
+  int l;
+  char file_name[100] = "/home/pi/sender-python-c/python-code/coordinates";
+  FILE *fp = fopen(file_name, "r"); // read mode
+  if (fp == NULL)
+  {
+     perror("Error while opening the file.\n");
+     exit(EXIT_FAILURE);
+  }
+   while((l = fgetc(fp)) != EOF){
+      coordinatesBuffer[i] = l;
+      i++;
+    }
+  fclose(fp);
+}
+
 
 void die(const char *s)
 {
@@ -437,12 +456,10 @@ void txlora(byte *frame, byte datalen) {
 
 int main (int argc, char *argv[]) {
 //OWN CODE
-  scanf("%d",&latitude)
-  scanf("%d",&longtitude)
-  
+    readFromFile();
 //
     if (argc < 2) {
-        printf ("Usage: argv[0] sender|rec [message]\n");
+        printf ("\nUsage: argv[0] sender|rec [message]\n");
         exit(1);
     }
 
@@ -468,11 +485,12 @@ int main (int argc, char *argv[]) {
         printf("------------------\n");
 
         if (argc > 2)
-            strncpy((char *)hello, argv[2], sizeof(hello));
+            strncpy((char *)coordinatesBuffer, argv[2], sizeof(coordinatesBuffer));
 
         while(1) {
-            txlora(hello, strlen((char *)hello));
+            txlora(coordinatesBuffer, strlen((char *)coordinatesBuffer));
             delay(5000);
+            exit(1);
         }
     } else {
 

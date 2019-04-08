@@ -1,5 +1,5 @@
-# 2019-04-08
-# Version: 0.2.1
+# 2019-04-04
+# Version: 0.1.1
 
 from serial_rpi import *
 import os

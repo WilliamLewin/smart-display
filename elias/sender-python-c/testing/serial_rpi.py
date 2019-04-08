@@ -1,10 +1,13 @@
-# 2019-04-08
-# Version: 0.2.1
+# 2019-04-04
+# Version: 0.1.1
 
 import time
 import serial
 
 class serial_rpi:
+
+    #def __init__(self):
+        #self.filter_coordinates()
 
     ###################################
     # This function captures GPS data
@@ -70,8 +73,8 @@ class serial_rpi:
             latitude = cleanedBuffer[3]
             longtitude = cleanedBuffer[5]
 
-        #latitude = 5924.4132
-        #longtitude = 01757.3921
+        latitude = 5924.4131
+        longtitude = 01757.3921
         coordinates = [latitude,longtitude]
         #print(latitude)
         #print(longtitude)
@@ -79,16 +82,9 @@ class serial_rpi:
         #print("01757.3920")
         return coordinates
 
-    ###################################
-    # This function writes latitude
-    # and longtitude to a file called
-    # coordinates
-    # Return: None
-    ###################################
-
     def write_to_file(self):
         coordinates = self.filter_coordinates()
-        file = open("/home/pi/sender-python-c/python-code/coordinates","w")
+        file = open("coordinates","w")
         file.write(str(coordinates[0]))
         file.write('\n\r')
         file.write(str(coordinates[1]))
