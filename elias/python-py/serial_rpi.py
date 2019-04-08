@@ -1,15 +1,30 @@
+# 2019-04-04
+# Version: 0.1.1
+
 import time
 import serial
 from serial_rpi import *
 
 class serial_rpi:
 
+    #def __init__(self):
+        #self.filter_coordinates()
+
+    ###################################
+    # This function captures GPS data
+    # using serial port /dev/ttyS0
+    # which the LoRa/GPS hat has gps
+    # module connected on.
+    #
+    # Return: GPS data
+    ###################################
+
     def capture_gps_data(self):
         gpsBuffer = []
         serial_gps = serial.Serial('/dev/ttyS0')
         serial_gps.baudrate = 9600
-        end_time = 10   #run for 10 seconds
-        stop_time = None #stop time variable
+        end_time = 10                               #run for 10 seconds
+        stop_time = None                            #stop time variable
         start = time.time()
         while stop_time < end_time:
             stop = time.time()
@@ -17,6 +32,14 @@ class serial_rpi:
         serial_read = serial_gps.inWaiting()
         gpsBuffer = serial_gps.read(serial_read)
         return gpsBuffer
+
+    ###################################
+    # This function filters out
+    # gps data that is being transmit-
+    # ted.
+    #
+    # Return: Filtered GPS data
+    ###################################
 
     def filter_gps_data(self):
         dataBuffer = []
@@ -28,7 +51,6 @@ class serial_rpi:
                 datastr.append(gpsBuffer[i])
             else:
                 if '$GPRMC' in ''.join(datastr):
-                    #print(''.join(datastr))
                     dataBuffer.append(''.join(datastr))
                     datastr = []
                 else:
@@ -36,6 +58,12 @@ class serial_rpi:
             i = i + 1
         return dataBuffer
 
+    ###################################
+    # This function gives latitude
+    # and longtitude
+    #
+    # Return: Latitude and longtitude
+    ###################################
     def filter_coordinates(self):
         longtitude = 0
         latitude = 0
@@ -43,7 +71,7 @@ class serial_rpi:
         cleanedBuffer = []
         for i in range(0,len(dataBuffer)):
             cleanedBuffer = dataBuffer[i].split(",")
-            latitude = cleanedBuffer[3:4]
-            longtitude = cleanedBuffer[5:6]
+            latitude = cleanedBuffer[3]
+            longtitude = cleanedBuffer[5]
         coordinates = [latitude,longtitude]
         return coordinates
