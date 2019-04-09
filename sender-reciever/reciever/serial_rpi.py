@@ -106,19 +106,18 @@ class serial_rpi:
         return latLong
 
     def calculate_dist_gps(self):
-        latLong = self.filter_gps_data()
-        latitude1 = int(latLong[0],10)/100
-        longtitude1 = int(latLong[1],10)/100
+        latLong = self.filter_coordinates()
+        latitude1 = float(latLong[0])/100
+        longtitude1 = float(latLong[1])/100
         #latitude1 = 5924.3705/100 #Remove
         #longtitude1 = 01757.4502/100 #Remove
         latLong = self.read_from_file()
-        latitude2 = int(latLong[0],10)/100
-        longtitude2 = int(latLong[1],10)/100
+        latitude2 = float(latLong[0])/100
+        longtitude2 = float(latLong[1])/100
         cord1 = (latitude1,longtitude1)
         cord2 = (latitude2,longtitude2)
         distance = geopy.distance.vincenty(cord1, cord2).m
-        distanceInt = int(distance,10)
-        return distanceInt
+        return distance
 
     ###################################
     # This function returns an error
@@ -128,5 +127,8 @@ class serial_rpi:
     ###################################
     def distance_check(self):
         distance_to_sender = self.calculate_dist_gps()
+        print(distance_to_sender)
         if distance_to_sender < 5:
             print("TURN AROUND")
+            print("Distance is to low")
+            print(distance_to_sender)
