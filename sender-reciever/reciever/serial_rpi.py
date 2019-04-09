@@ -107,17 +107,18 @@ class serial_rpi:
 
     def calculate_dist_gps(self):
         latLong = self.filter_gps_data()
-        latitude1 = latLong[0]/100
-        longtitude1 = latLong[1]/100
+        latitude1 = int(latLong[0],10)/100
+        longtitude1 = int(latLong[1],10)/100
         #latitude1 = 5924.3705/100 #Remove
         #longtitude1 = 01757.4502/100 #Remove
         latLong = self.read_from_file()
-        latitude2 = latLong[0]/100
-        longtitude2 = latLong[1]/100
+        latitude2 = int(latLong[0],10)/100
+        longtitude2 = int(latLong[1],10)/100
         cord1 = (latitude1,longtitude1)
         cord2 = (latitude2,longtitude2)
         distance = geopy.distance.vincenty(cord1, cord2).m
-        return distance
+        distanceInt = int(distance,10)
+        return distanceInt
 
     ###################################
     # This function returns an error
