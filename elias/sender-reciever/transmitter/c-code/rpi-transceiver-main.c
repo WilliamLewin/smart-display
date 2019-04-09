@@ -183,26 +183,36 @@ uint32_t  freq = 868100000; // in Mhz! (868.1)
 
 
 
-byte coordinatesBuffer[32] = "coordinatesBuffer";
+byte coordinatesBuffer[32] = "";
 
-//READ COORDINATES FROM FILE AND STORE IN coordinatesBuffer
+//Own code
 void readFromFile(){
   int i = 0;
   int l;
-  char file_name[100] = "/home/pi/sender-python-c/python-code/coordinates";
-  FILE *fp = fopen(file_name, "r"); // read mode
-  if (fp == NULL)
+  char file_name[100] = "/home/pi/sender-reciever/transmitter/coordinates";
+  FILE *filePath = fopen(file_name, "r"); // read mode
+  if (filePath == NULL)
   {
      perror("Error while opening the file.\n");
      exit(EXIT_FAILURE);
   }
-   while((l = fgetc(fp)) != EOF){
+   while((l = fgetc(filePath)) != EOF){
       coordinatesBuffer[i] = l;
       i++;
     }
-  fclose(fp);
+  fclose(filePath);
 }
 
+//Own code
+void writeToFile(){
+  FILE *filePath = fopen("/home/pi/sender-reciever/transmitter/c-code/recCoordinates", "w");
+  if (filePath == NULL){
+      printf("Error opening file!\n");
+      exit(1);
+  }
+  fprintf(filePath, "%s", message);
+  fclose(filePath);
+}
 
 void die(const char *s)
 {
@@ -392,9 +402,13 @@ void receivepacket() {
             printf("\n");
             printf("Payload: %s\n", message);
 
+            writeToFile(); //Write message to file
+            exit(1);
+
         } // received a message
 
     } // dio0=1
+
 }
 
 static void configPower (int8_t pw) {
@@ -456,7 +470,7 @@ void txlora(byte *frame, byte datalen) {
 
 int main (int argc, char *argv[]) {
 //OWN CODE
-    readFromFile();
+
 //
     if (argc < 2) {
         printf ("\nUsage: argv[0] sender|rec [message]\n");
@@ -488,8 +502,8 @@ int main (int argc, char *argv[]) {
             strncpy((char *)coordinatesBuffer, argv[2], sizeof(coordinatesBuffer));
 
         while(1) {
+            readFromFile();
             txlora(coordinatesBuffer, strlen((char *)coordinatesBuffer));
-            delay(5000);
             exit(1);
         }
     } else {
