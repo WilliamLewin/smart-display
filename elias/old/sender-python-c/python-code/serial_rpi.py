@@ -70,8 +70,8 @@ class serial_rpi:
             latitude = cleanedBuffer[3]
             longtitude = cleanedBuffer[5]
 
-        #latitude = 5924.4132
-        #longtitude = 01757.3921
+        latitude = 5924.4132
+        longtitude = 01757.3921
         coordinates = [latitude,longtitude]
         #print(latitude)
         #print(longtitude)
