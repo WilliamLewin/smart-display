@@ -118,3 +118,14 @@ class serial_rpi:
         cord2 = (latitude2,longtitude2)
         distance = geopy.distance.vincenty(cord1, cord2).m
         return distance
+
+    ###################################
+    # This function returns an error
+    # message based on the distance
+    #
+    # Return: None
+    ###################################
+    def distance_check(self):
+        distance_to_sender = self.calculate_dist_gps()
+        if distance_to_sender < 5:
+            print("TURN AROUND")
