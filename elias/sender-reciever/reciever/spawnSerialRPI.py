@@ -6,3 +6,4 @@ import os
 rpi = serial_rpi()
 rpi.read_from_file()
 rpi.calculate_dist_gps()
+rpi.
