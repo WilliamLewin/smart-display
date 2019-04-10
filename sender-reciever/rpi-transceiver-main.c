@@ -189,7 +189,7 @@ byte coordinatesBuffer[32] = "";
 void readFromFile(){
   int i = 0;
   int l;
-  char file_name[100] = "/home/pi/sender-reciever/transmitter/coordinates";
+  char file_name[100] = "/home/pi/sender-reciever/coordinates";
   FILE *filePath = fopen(file_name, "r"); // read mode
   if (filePath == NULL)
   {
@@ -203,9 +203,8 @@ void readFromFile(){
   fclose(filePath);
 }
 
-//Own code
 void writeToFile(){
-  FILE *filePath = fopen("/home/pi/sender-reciever/transmitter/c-code/recCoordinates", "w");
+  FILE *filePath = fopen("/home/pi/sender-reciever/recCoordinates", "w");
   if (filePath == NULL){
       printf("Error opening file!\n");
       exit(1);
@@ -470,7 +469,7 @@ void txlora(byte *frame, byte datalen) {
 
 int main (int argc, char *argv[]) {
 //OWN CODE
-
+    //
 //
     if (argc < 2) {
         printf ("\nUsage: argv[0] sender|rec [message]\n");
