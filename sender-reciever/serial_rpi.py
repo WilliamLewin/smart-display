@@ -3,6 +3,8 @@
 
 import time
 import serial
+import geopy.distance
+import math
 
 class serial_rpi:
 
@@ -19,7 +21,7 @@ class serial_rpi:
         gpsBuffer = []
         serial_gps = serial.Serial('/dev/ttyS0')
         serial_gps.baudrate = 9600
-        end_time = 10                               #run for 10 seconds
+        end_time = 5                               #run for 10 seconds
         stop_time = None                            #stop time variable
         start = time.time()
         while stop_time < end_time:
@@ -81,7 +83,7 @@ class serial_rpi:
 
     def write_to_file(self):
         coordinates = self.filter_coordinates()
-        file = open("/home/pi/sender-reciever/reciever/coordinates","w")
+        file = open("/home/pi/sender-reciever/coordinates","w")
         file.write(str(coordinates[0]))
         file.write('\n\r')
         file.write(str(coordinates[1]))
@@ -89,7 +91,7 @@ class serial_rpi:
 
 
     def read_from_file(self):
-        file = open('/home/pi/sender-reciever/reciever/c-code/recCoordinates','r')
+        file = open('/home/pi/sender-reciever/recCoordinates','r')
         coordinates = file.read()
         buffer = []
         for i in range(0,len(coordinates)):
@@ -97,6 +99,32 @@ class serial_rpi:
                 buffer.append(coordinates[i])
         cleanedBuffer = ''.join(buffer)
         latitude = cleanedBuffer[0:9]
-        longtitude = cleanedBuffer[9:18]
-        print(latitude)
-        print(longtitude)
+        longtitude = cleanedBuffer[9:20]
+        latLong = [latitude,longtitude]
+        return latLong
+
+    def calculate_dist_gps(self):
+        latLong = self.filter_coordinates()
+        latitude1 = float(latLong[0])/100
+        longtitude1 = float(latLong[1])/100
+        latLong = self.read_from_file()
+        latitude2 = float(latLong[0])/100
+        longtitude2 = float(latLong[1])/100
+        cord1 = (latitude1,longtitude1)
+        cord2 = (latitude2,longtitude2)
+        distance = geopy.distance.vincenty(cord1, cord2).m
+        return distance
+
+    ###################################
+    # This function returns an error
+    # message based on the distance
+    #
+    # Return: None
+    ###################################
+    def distance_check(self):
+        distance_to_sender = self.calculate_dist_gps()
+        print(distance_to_sender)
+        if distance_to_sender < 5:
+            print("TURN AROUND")
+            print("Distance is to low")
+            print(distance_to_sender)
