@@ -21,7 +21,7 @@ class serial_rpi:
         gpsBuffer = []
         serial_gps = serial.Serial('/dev/ttyS0')
         serial_gps.baudrate = 9600
-        end_time = 5                               #run for 10 seconds
+        end_time = 8                               #run for 10 seconds
         stop_time = None                            #stop time variable
         start = time.time()
         while stop_time < end_time:

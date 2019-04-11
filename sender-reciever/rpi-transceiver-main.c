@@ -400,6 +400,8 @@ void receivepacket() {
             printf("Length: %i", (int)receivedbytes);
             printf("\n");
             printf("Payload: %s\n", message);
+            printf("\n\r");
+            printf("\n\r");
 
             writeToFile(); //Write message to file
             exit(1);
@@ -465,6 +467,8 @@ void txlora(byte *frame, byte datalen) {
     opmode(OPMODE_TX);
 
     printf("send: %s\n", frame);
+    printf("\n\r");
+    printf("\n\r");
 }
 
 int main (int argc, char *argv[]) {
