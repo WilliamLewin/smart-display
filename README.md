@@ -11,7 +11,7 @@ For GPS and LoRa connection between two modules:
 6. Use "chmod +x wifi-ccguest.sh" and "chmod +x wifi-ccguest.sh".
 7. Make two files called wifi1 and wifi2 in /etc/wpa_supplicant/
 8. Wifi1 should contain the hotspot connection, for example look below.
-
+```sh
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=INSERTCOUNTRYCODE
@@ -21,12 +21,14 @@ network={
 	psk="HOTSPOTSECRET"
 	key_mgmt=WPA-PSK
 }
-
+```
 9. Do the same with wifi2, this should have the original WiFi connection when first installed the Raspberry.
 10. Add the lines from under in "crontab -e":
+```sh
 @reboot python /home/pi/startup-clean.py
 */1 * * * * python /home/pi/sender-reciever/XXXX.py >> /home/pi/myjob.log 2>&1
 */1 * * * * sudo python /home/pi/sender-reciever/wifi/wifi-check.py
+```
 Where XXXX.py is either module1.py or module2.py.
 
 Easy SSH connection:
