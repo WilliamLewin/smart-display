@@ -1,6 +1,6 @@
-This file contains instructions for both the modules.
+## This file contains instructions for both the modules.
 
-Setup is needed following LoRa/GPS hat wiki.
+Setup is needed following [LoRa/GPS hat wiki.](http://wiki.dragino.com/index.php?title=Lora/GPS_HAT)
 On raspberry pi SPI needs to be activated.
 
 For GPS and LoRa connection between two modules:
