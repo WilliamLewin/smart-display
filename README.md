@@ -39,3 +39,12 @@ Easy SSH connection:
 2. Advanced Options
 3. Hostname
 4. Change to "smartworkplace-moduleX" where X is the number on the module.
+
+Blynk Configuration:
+1. Make an account on Blynk.com
+2. Install Python library https://github.com/blynkkk/lib-python
+3. Make local server https://github.com/blynkkk/blynk-server
+4. Wait for sucessful of server run
+5. Add to crontab -e server and blynk-moduleX.py with AUTH_TOKEN
+6. Make the app with corresponding Virtual pin
+7. Sudo reboot
