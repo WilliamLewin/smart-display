@@ -4,9 +4,16 @@
 import blynklib
 import sys
 import math
-from serial_rpi import serial_rpi
+from lora.serial_rpi import serial_rpi
 
-BLYNK_AUTH = sys.argv[1]
+file = open('key','r')
+buffer = file.read()
+key =[]
+for i in range(0,len(buffer)):
+    if '\n' not in buffer[i]:
+        key.append(buffer[i])
+key = ''.join(key)
+BLYNK_AUTH = key
 blynk = blynklib.Blynk(BLYNK_AUTH)
 
 while True:
