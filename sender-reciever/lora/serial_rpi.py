@@ -1,5 +1,5 @@
-# 2019-04-09
-# Version: 1.0.0
+# 2019-04-16
+# Version: 1.0.1
 
 import time
 import serial
@@ -83,7 +83,7 @@ class serial_rpi:
 
     def write_to_file(self):
         coordinates = self.filter_coordinates()
-        file = open("/home/pi/sender-reciever/coordinates","w")
+        file = open("/home/pi/sender-reciever/lora/coordinates","w")
         file.write(str(coordinates[0]))
         file.write('\n\r')
         file.write(str(coordinates[1]))
@@ -91,7 +91,7 @@ class serial_rpi:
 
 
     def read_from_file(self):
-        file = open('/home/pi/sender-reciever/recCoordinates','r')
+        file = open('/home/pi/sender-reciever/lora/recCoordinates','r')
         coordinates = file.read()
         buffer = []
         for i in range(0,len(coordinates)):
