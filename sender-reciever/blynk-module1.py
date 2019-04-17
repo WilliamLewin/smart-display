@@ -6,8 +6,7 @@ import sys
 import math
 import os
 from lora.serial_rpi import serial_rpi
-
-file = open('key','r')
+file = open('/home/pi/sender-reciever/key','r')
 buffer = file.read()
 key =[]
 for i in range(0,len(buffer)):
@@ -16,12 +15,11 @@ for i in range(0,len(buffer)):
 key = ''.join(key)
 BLYNK_AUTH = key
 blynk = blynklib.Blynk(BLYNK_AUTH)
-
 while True:
     blynk.run()
     rpi = serial_rpi()
     coordinates = rpi.filter_coordinates()
-    if '' in coordinates[0] or coordinates[1]:
+    if (coordinates[0]=='' or coordinates[1]==''):
         lat = 0
         long = 0
         blynk.virtual_write(16,1,lat,long,"M1")
