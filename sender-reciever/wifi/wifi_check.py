@@ -3,6 +3,7 @@
 
 import os
 import time
+import signal
 
 def getCurrentWifi():
     os.system('sudo iwconfig | grep wlan0 >> /home/pi/sender-reciever/wifi/currentwifi.txt')
@@ -28,21 +29,13 @@ def wifiScan():
     buffer = ''.join(buffer)
     return buffer
 
-def killBlynk():
-    pid = os.system('pgrep -f blynk')
-    cmd = "sudo kill " + str(pid)
-    os.system(cmd)
-
-
-os.system('sudo rm /home/pi/sender-reciever/wifi/wifi.txt')
-os.system('sudo rm /home/pi/sender-reciever/wifi/currentwifi.txt')
+os.system('sudo /home/pi/sender-reciever/wifi/cleanup.sh')
 trimmedWifi = getCurrentWifi()
 buffer = wifiScan()
 if 'CCGuest' in trimmedWifi:
     if 'SmartWorkplaceIphone' in buffer:
         print("SmartWorkplaceIphone")
         os.system('sudo /home/pi/sender-reciever/wifi/wifi-smartworkplace.sh')
-        killBlynk()
     else:
         print("SmartWorkplaceIphone Not Available")
 elif 'SmartWorkplaceIphone' in trimmedWifi:
@@ -51,10 +44,8 @@ elif 'off/any' in trimmedWifi:
     if 'SmartWorkplaceIphone' in buffer:
         print("Connecting to SmartWorkplaceIphone")
         os.system('sudo /home/pi/sender-reciever/wifi/wifi-smartworkplace.sh')
-        killBlynk()
     else:
         print("Connecting to CCGuest")
         os.system('sudo /home/pi/sender-reciever/wifi/wifi-ccguest.sh')
-        killBlynk()
 else:
     print("Done")
