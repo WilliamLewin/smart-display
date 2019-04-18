@@ -105,15 +105,41 @@ class serial_rpi:
 
     def calculate_dist_gps(self):
         latLong = self.filter_coordinates()
-        latitude1 = float(latLong[0])/100
-        longtitude1 = float(latLong[1])/100
+        #Changed Code
+        lat = latLong[0]
+        long = latLong[1]
+        x1 = lat[0:2]
+        x2 = lat[2:9]
+        lat = float(x1) + float(x2)/60
+        y1 = long[0:3]
+        y2 = long[3:10]
+        long = float(y1) + float(y2)/60
+        #latitude1 = float(latLong[0])/100
+        #longtitude1 = float(latLong[1])/100
+        latitude1 = math.radians(lat)
+        longtitude1 = math.radians(long)
+        #Changed Code
         latLong = self.read_from_file()
-        latitude2 = float(latLong[0])/100
-        longtitude2 = float(latLong[1])/100
+        #Changed Code
+        lat = latLong[0]
+        long = latLong[1]
+        x1 = lat[0:2]
+        x2 = lat[2:9]
+        lat = float(x1) + float(x2)/60
+        y1 = long[0:3]
+        y2 = long[3:10]
+        long = float(y1) + float(y2)/60
+        latitude2 = math.radians(lat)
+        longtitude2 = math.radians(long)
+        #latitude2 = float(latLong[0])/100
+        #longtitude2 = float(latLong[1])/100
+        #Changed Code
         cord1 = (latitude1,longtitude1)
         cord2 = (latitude2,longtitude2)
-        distance = geopy.distance.vincenty(cord1, cord2).m
+        distance = geopy.distance.geodesic(cord1, cord2).m
+        #distance = geopy.distance.vincenty(cord1, cord2).m
         return distance
+
 
     ###################################
     # This function returns an error
