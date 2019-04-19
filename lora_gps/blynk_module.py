@@ -24,10 +24,12 @@ while True:
             blynk.virtual_write(16,1,lat,long,"M1")
             blynk.virtual_write(20, lat)
             blynk.virtual_write(21, long)
-        else module == 'module2':
+        elif module == 'module2':
             blynk.virtual_write(16,2,lat,long,"M2")
             blynk.virtual_write(22, lat)
             blynk.virtual_write(23, long)
+        else:
+            print("Something wrong!\n\r")
     else:
         lat = coordinates[0]
         long = coordinates[1]
@@ -41,7 +43,9 @@ while True:
             blynk.virtual_write(16,1,lat,long,"M1")
             blynk.virtual_write(20, lat)
             blynk.virtual_write(21, long)
-        else module == 'module2':
+        elif module == 'module2':
             blynk.virtual_write(16,2,lat,long,"M2")
             blynk.virtual_write(22, lat)
             blynk.virtual_write(23, long)
+        else:
+            print("Something wrong!\n\r")

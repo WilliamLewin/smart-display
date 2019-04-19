@@ -8,8 +8,8 @@
 
 /*
 * Modified by Elias Chahine & William Lewin
-* 2019-04-16
-* Version: 1.0.1
+* 2019-04-19
+* Version: 2.0.0
 * Note: Original by Dragino. From example on ->
 * https://wiki.dragino.com/index.php?title=Lora/GPS_HAT
 *
@@ -189,7 +189,7 @@ byte coordinatesBuffer[32] = "";
 void readFromFile(){
   int i = 0;
   int l;
-  char file_name[100] = "/home/pi/lora_gps/transceiver/coordinates";
+  char file_name[100] = "/home/pi/lora_gps/coordinates";
   FILE *filePath = fopen(file_name, "r"); // read mode
   if (filePath == NULL)
   {
@@ -204,7 +204,7 @@ void readFromFile(){
 }
 
 void writeToFile(){
-  FILE *filePath = fopen("/home/pi/lora_gps/transceiver/recCoordinates", "w");
+  FILE *filePath = fopen("/home/pi/lora_gps/recCoordinates", "w");
   if (filePath == NULL){
       printf("Error opening file!\n");
       exit(1);
