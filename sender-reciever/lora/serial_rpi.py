@@ -149,8 +149,9 @@ class serial_rpi:
     ###################################
     def distance_check(self):
         distance_to_sender = self.calculate_dist_gps()
+        print("Distance is:")
         print(distance_to_sender)
+        print("\n\r")
         if distance_to_sender < 5:
             print("TURN AROUND")
-            print("Distance is to low")
-            print(distance_to_sender)
+            print("Distance is to low!")

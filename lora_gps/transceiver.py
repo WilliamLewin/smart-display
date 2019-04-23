@@ -7,8 +7,8 @@
 import sys
 import os
 import time
-from serial_rpi import write_to_file read_from_file distance_check
-
+from serial_rpi import *
+# coding=utf-8
 chooser = sys.argv[1]
 os.chdir('/home/pi/lora_gps/')
 os.system('make')
@@ -49,13 +49,5 @@ while(time.time() - start) < 55:
         print("Something really wrong!\n\r")
     time.sleep(1)
 
-
-# Fixa detta under så det blir rätt
-#
-#os.system('sudo rm /home/pi/lora_gps/dragino_lora_app')
-#os.system('sudo rm /home/pi/lora_gps/rpi-transceiver-main.o')
-#os.system('sudo rm /home/pi/lora_gps/serial_rpi.pyc')
-#os.system('sudo rm /home/pi/lora_gps/recCoordinates')
-#os.system('sudo rm /home/pi/lora_gps/coordinates')
 os.system('sudo /home/pi/lora_gps/remover.sh')
 print("\n\rRun completed time it took: " + str(time.time() - start) + "\n\r")

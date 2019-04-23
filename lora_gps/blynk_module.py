@@ -2,7 +2,7 @@ import blynklib
 import sys
 import math
 import os
-from data_processing.serial_rpi import serial_rpi
+from serial_rpi import serial_rpi
 module = sys.argv[1]
 file = open('/home/pi/lora_gps/key','r')
 buffer = file.read()
