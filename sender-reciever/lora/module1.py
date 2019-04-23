@@ -15,5 +15,7 @@ while (time.time() - start) < 57:
         run = 1
     time.sleep(1)
 
-print("\n\rRun completed!\n\r")
+print("Run completed!")
+print("Time for running:")
 print(time.time() - start)
+print("\n\r")

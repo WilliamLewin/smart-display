@@ -1,5 +1,5 @@
-# 2019-04-16
-# Version: 1.0.1
+# 2019-04-19
+# Version: 2.0.0
 
 import time
 import serial
@@ -83,7 +83,7 @@ class serial_rpi:
 
     def write_to_file(self):
         coordinates = self.filter_coordinates()
-        file = open("/home/pi/sender-reciever/lora/coordinates","w")
+        file = open("/home/pi/lora_gps/coordinates","w")
         file.write(str(coordinates[0]))
         file.write('\n\r')
         file.write(str(coordinates[1]))
@@ -91,7 +91,7 @@ class serial_rpi:
 
 
     def read_from_file(self):
-        file = open('/home/pi/sender-reciever/lora/recCoordinates','r')
+        file = open('/home/pi/lora_gps/recCoordinates','r')
         coordinates = file.read()
         buffer = []
         for i in range(0,len(coordinates)):
@@ -149,9 +149,8 @@ class serial_rpi:
     ###################################
     def distance_check(self):
         distance_to_sender = self.calculate_dist_gps()
-        print("Distance is:")
         print(distance_to_sender)
-        print("\n\r")
         if distance_to_sender < 5:
             print("TURN AROUND")
-            print("Distance is to low!")
+            print("Distance is to low")
+            print(distance_to_sender)

@@ -29,13 +29,11 @@ while True:
         lat = coordinates[0]
         long = coordinates[1]
         x1 = lat[0:2]
-        x2 = lat[2:4]
-        x3 = lat[5:7] + '.' + lat[7:9]
-        lat = float(x1) + float(x2)/60 + float(x3)/3600
+        x2 = lat[2:9]
+        lat = float(x1) + float(x2)/60
         y1 = long[0:3]
-        y2 = long[3:5]
-        y3 = long[6:8] + '.' + long[8:10]
-        long = float(y1) + float(y2)/60 + float(y3)/3600
+        y2 = long[3:10]
+        long = float(y1) + float(y2)/60
         blynk.virtual_write(16,1,lat,long,"M1")
         blynk.virtual_write(20, lat)
         blynk.virtual_write(21, long)
