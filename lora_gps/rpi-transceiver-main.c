@@ -8,8 +8,8 @@
 
 /*
 * Modified by Elias Chahine & William Lewin
-* 2019-04-16
-* Version: 1.0.1
+* 2019-04-19
+* Version: 2.0.0
 * Note: Original by Dragino. From example on ->
 * https://wiki.dragino.com/index.php?title=Lora/GPS_HAT
 *
@@ -189,7 +189,7 @@ byte coordinatesBuffer[32] = "";
 void readFromFile(){
   int i = 0;
   int l;
-  char file_name[100] = "/home/pi/sender-reciever/lora/coordinates";
+  char file_name[100] = "/home/pi/lora_gps/coordinates";
   FILE *filePath = fopen(file_name, "r"); // read mode
   if (filePath == NULL)
   {
@@ -204,30 +204,12 @@ void readFromFile(){
 }
 
 void writeToFile(){
-  FILE *filePath = fopen("/home/pi/sender-reciever/lora/recCoordinates", "w");
+  FILE *filePath = fopen("/home/pi/lora_gps/recCoordinates", "w");
   if (filePath == NULL){
       printf("Error opening file!\n");
       exit(1);
   }
   fprintf(filePath, "%s", message);
-  fclose(filePath);
-}
-
-void writePeformance(long int snr, long int rssi1, long int rssi2){
-  char msg1 [40];
-  char msg2 [40];
-  char msg3 [40];
-  FILE *filePath = fopen("/home/pi/peformance_metrics", "w");
-  if (filePath == NULL){
-      printf("Error opening file!\n");
-      exit(1);
-  }
-  sprintf(msg1, "SNR: %ldmin\n", snr);
-  sprintf(msg2, "Packet RSSI: %ldmin\n", rssi1);
-  sprintf(msg3, "RSSI: %ldmin\n", rssi2);
-  fprintf(filePath, "%s", msg1);
-  fprintf(filePath, "%s", msg2);
-  fprintf(filePath, "%s", msg3);
   fclose(filePath);
 }
 
@@ -388,8 +370,6 @@ boolean receive(char *payload) {
 void receivepacket() {
 
     long int SNR;
-    long int RSSI1;
-    long int RSSI2;
     int rssicorr;
 
     if(digitalRead(dio0) == 1)
@@ -422,9 +402,7 @@ void receivepacket() {
             printf("Payload: %s\n", message);
             printf("\n\r");
             printf("\n\r");
-            RSSI1 = readReg(0x1A)-rssicorr;
-            RSSI2 = readReg(0x1B)-rssicorr;
-            writePeformance(SNR, RSSI1, RSSI2);
+
             writeToFile(); //Write message to file
             exit(1);
 
