@@ -42,19 +42,33 @@ def getCoordinates():
     return lat, long
 
 def getPeformanceMetrics():
+    #file = open('peformance_metrics','r')
+    #buffer1 = file.read()
+    #buffer2 = []
+    #for i in range(0,len(buffer1)):
+    #    if '\n' not in buffer1[i]:
+    #        buffer2.append(buffer1[i])
+    #buffer2 = ''.join(buffer2)
+    #buffer2 = buffer2.replace(" ","")
+    #buffer2 = buffer2.split("min")
+    #snr = ''.join(filter(str.isdigit, buffer2[0]))
+    #rssi1 = ''.join(filter(str.isdigit, buffer2[1]))
+    #rssi2 = ''.join(filter(str.isdigit, buffer2[2]))
     file = open('peformance_metrics','r')
     buffer1 = file.read()
     buffer2 = []
     for i in range(0,len(buffer1)):
         if '\n' not in buffer1[i]:
             buffer2.append(buffer1[i])
-
     buffer2 = ''.join(buffer2)
     buffer2 = buffer2.replace(" ","")
+    buffer2 = buffer2.replace("SNR:", "")
+    buffer2 = buffer2.replace("PacketRSSI:", "")
+    buffer2 = buffer2.replace("RSSI:", "")
     buffer2 = buffer2.split("min")
-    snr = ''.join(filter(str.isdigit, buffer2[0]))
-    rssi1 = ''.join(filter(str.isdigit, buffer2[1]))
-    rssi2 = ''.join(filter(str.isdigit, buffer2[2]))
+    snr = buffer2[0]
+    rssi1 = buffer2[1]
+    rssi2 = buffer2[2]
     return snr, rssi1, rssi2
 
 def writeToBlynkApp():
