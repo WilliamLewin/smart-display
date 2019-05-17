@@ -1,0 +1,131 @@
+pi@smartworkplace-module2:~/testingDayTwo $ ./dragino_lora_app rec
+SX1276 detected, starting.
+Listening at SF7 on 868.100000 Mhz.
+------------------
+Packet RSSI: -105, RSSI: -102, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -101, SNR: -10, Length: 19
+Payload: ??T:.1215
+                  6m25{e"6?
+Packet RSSI: -105, RSSI: -103, SNR: -10, Length: 19
+Payload: 5	?g64
+%y25F7?34
+Packet RSSI: -105, RSSI: -102, SNR: -10, Length: 19
+Payload: 5=2????9?60920,q4
+Packet RSSI: -105, RSSI: -101, SNR: -9, Length: 19
+Payload: ?980.5r34
+5920.1234
+Packet RSSI: -105, RSSI: -101, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -102, SNR: -10, Length: 19
+Payload: 5920~1b34
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -10, Length: 19
+Payload: ???PNR34
+u9r0.12ST
+Packet RSSI: -105, RSSI: -102, SNR: -10, Length: 19
+Payload: ???3.1234
+5}vt??:3=
+Packet RSSI: -105, RSSI: -104, SNR: -10, Length: 19
+Payload: @J)<!36l6?2&`^
+Packet RSSI: -105, RSSI: -102, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -102, SNR: -8, Length: 19
+Payload: 5920.1234
+5920(W454
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -102, SNR: -10, Length: 19
+Payload: 5920.12?>05920.123
+Packet RSSI: -105, RSSI: -105, SNR: -10, Length: 19
+Payload: 592`+1234
+e
+g
+Packet RSSI: -105, RSSI: -104, SNR: -11, Length: 19
+Payload: 49"0+423t
+520.12S2
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: P9:`??205:>2?6#v
+Packet RSSI: -105, RSSI: -103, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -10, Length: 19
+Payload: 9???*1:34
+5920n4D34
+Packet RSSI: -104, RSSI: -103, SNR: -9, Length: 19
+Payload: $831.1234
+5920.1234
+Packet RSSI: -104, RSSI: -109, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -104, SNR: -11, Length: 19
+Payload: 5920*1634
+5:1.12?
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: %)#0?9:34
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -105, SNR: -10, Length: 19
+Payload: 5920.Q2t
+
+ ,q2?4
+Packet RSSI: -105, RSSI: -102, SNR: -9, Length: 19
+Payload: 5920.12c45920.1234
+Packet RSSI: -105, RSSI: -109, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -105, SNR: -9, Length: 19
+Payload: 5920.1?34
+5920.1234
+Packet RSSI: -105, RSSI: -104, SNR: -9, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -101, SNR: -8, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -102, SNR: -6, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -102, SNR: -7, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -101, SNR: -6, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -103, SNR: -5, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -101, SNR: -7, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -103, SNR: -7, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -101, SNR: -6, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -102, SNR: -4, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -101, SNR: -5, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -105, RSSI: -103, SNR: -5, Length: 19
+Payload: 5920.1234
+5920.1234
+Packet RSSI: -104, RSSI: -102, SNR: -5, Length: 19
+Payload: 5920.1234
+5920.1234
+^C
