@@ -1,8 +1,19 @@
 
 .DS_Store
-elias/.DS_Store
 sender-reciever/key
-elias/
-william/
 lora_gps/key
 lora_gps/
+filter_data/5
+filter_data/100
+filter_data/200
+filter_data/300
+filter_data/400
+filter_data/500
+filter_data/600
+filter_data/700
+filter_data/800
+filter_data/900
+filter_data/1000
+filter_data/1100
+filter_data/filteredPackets
+filter_data/filteredPeformanceMetrics
